@@ -28,4 +28,10 @@ class AuthController extends Controller
                 ->with('error', 'อีเมลหรือรหัสผ่านของคุณไม่ถูกต้อง');
         }
     }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('login');
+    }
 }

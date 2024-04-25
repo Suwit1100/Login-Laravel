@@ -10,6 +10,7 @@
 
 <body>
     <h1>Hello Admin</h1>
+    <a href="{{ route('logout') }}">ออกจากระบบ</a>
 </body>
 
 </html>

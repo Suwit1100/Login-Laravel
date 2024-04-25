@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AuthController::class, 'view_login'])->name('login');
 Route::post('/postlogin', [AuthController::class, 'post_login'])->name('post_login');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth', 'checkadmin'])->group(function () {
     Route::get('/homeadmin', [HomeAdminController::class, 'homeadmin'])->name('homeadmin');
