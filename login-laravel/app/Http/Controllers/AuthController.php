@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Dotenv\Exception\ValidationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -33,5 +35,35 @@ class AuthController extends Controller
     {
         Auth::logout();
         return redirect()->route('login');
+    }
+
+    public function view_register()
+    {
+        return view('register');
+    }
+
+    public function post_register(Request $request)
+    {
+        $data = $request->all();
+        $request->validate(
+            [
+                'email' => 'required|email|unique:users',
+                'password' => 'required_with:password_confirm|min:6|same:password_confirm',
+            ],
+            [
+                'email.unique' => 'มีอีเมลนี้อยู่แล้ว',
+                'password.min' => 'รหัสผ่านต้องมีความยาวอย่างน้อย 6 ตัวอักษร',
+                'password.same' => 'รหัสผ่านยืนยันไม่ตรงกับรหัสผ่าน',
+            ]
+        );
+
+        $usernew = User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'role' => 0,
+            'password' => Hash::make($data['password']),
+        ]);
+
+        return redirect()->back()->with('success-register', 'สมัครสมาชิกสำเร็จ');
     }
 }

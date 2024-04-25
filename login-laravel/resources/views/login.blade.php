@@ -31,6 +31,7 @@
                 </div>
             </div>
         </form>
+        <a href="{{ route('register') }}">สมัครสมาชิก</a>
     </div>
 </body>
 
