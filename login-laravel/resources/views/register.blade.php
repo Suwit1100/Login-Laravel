@@ -18,6 +18,20 @@
                 <div class="col-12 text-center">
                     สมัครสมาชิก
                 </div>
+                @if (session('success-register'))
+                    <div class="alert alert-success">
+                        {{ session('success-register') }}
+                    </div>
+                @endif
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="col-12">
                     <label for="name">ชื่อ</label>
                     <input type="text" class="form-control" id="name" name="name">
@@ -42,6 +56,13 @@
         <a href="{{ route('login') }}">เข้าสู่ระบบ</a>
     </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                document.querySelector('.alert').style.display = 'none';
+            }, 3000); // ล้าง session หลังจากผ่านไป 3 วินาที
+        });
+    </script>
 </body>
 
 </html>

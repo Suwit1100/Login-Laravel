@@ -27,7 +27,7 @@ class AuthController extends Controller
             }
         } else {
             return redirect()->route('login')
-                ->with('error', 'อีเมลหรือรหัสผ่านของคุณไม่ถูกต้อง');
+                ->with('error_login', 'อีเมลหรือรหัสผ่านของคุณไม่ถูกต้อง');
         }
     }
 

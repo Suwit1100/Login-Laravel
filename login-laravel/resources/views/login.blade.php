@@ -18,6 +18,11 @@
                 <div class="col-12 text-center">
                     เข้าสู่ระบบ
                 </div>
+                @if (session('error_login'))
+                    <div class="alert alert-danger">
+                        {{ session('error_login') }}
+                    </div>
+                @endif
                 <div class="col-12">
                     <label for="email">อีเมล</label>
                     <input type="email" class="form-control" id="email" name="email">
@@ -33,6 +38,14 @@
         </form>
         <a href="{{ route('register') }}">สมัครสมาชิก</a>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                document.querySelector('.alert').style.display = 'none';
+            }, 3000); // ล้าง session หลังจากผ่านไป 3 วินาที
+        });
+    </script>
 </body>
 
 </html>
