@@ -12,7 +12,8 @@
 
 <body>
     <div class="container">
-        <form action="">
+        <form action="{{ route('post_login') }}" method="post">
+            @csrf
             <div class="row">
                 <div class="col-12 text-center">
                     เข้าสู่ระบบ

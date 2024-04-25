@@ -15,12 +15,13 @@ class AuthController extends Controller
 
     public function post_login(Request $request)
     {
+        // dd($request->all());
         $data = $request->all();
         if (auth()->attempt(array('email' => $data['email'], 'password' => $data['password']))) {
             if (Auth::user()->role == 1) {
-                return redirect()->route('home_admin');
+                return redirect()->route('homeadmin');
             } else {
-                return redirect()->route('home_user');
+                return redirect()->route('homeuser');
             }
         } else {
             return redirect()->route('login')

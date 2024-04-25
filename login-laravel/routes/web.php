@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeUserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AuthController::class, 'view_login'])->name('login');
+Route::post('/postlogin', [AuthController::class, 'post_login'])->name('post_login');
 
 Route::middleware(['auth', 'checkadmin'])->group(function () {
     Route::get('/homeadmin', [HomeAdminController::class, 'homeadmin'])->name('homeadmin');
